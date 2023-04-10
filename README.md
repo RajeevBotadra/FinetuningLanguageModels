@@ -1,3 +1,13 @@
+---
+title: Basic Sentiment Analyzer
+emoji: 📹
+colorFrom: blue
+colorTo: red
+sdk: streamlit
+app_file: app.py
+pinned: false
+---
+
 Installation instructions (Windows 10 Machine):
 1) Install Docker Desktop for Windows from this link: https://docs.docker.com/desktop/install/windows-install/
 2) Run the downloaded .exe file
