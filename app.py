@@ -9,31 +9,28 @@ from scipy.special import softmax
 import csv
 import urllib.request
 
-#title
-st.title("Basic Sentiment Analyzer")
+#Title
+st.title("Toxicity Analysis of Tweets")
 
-#subtitle
-st.markdown("## Basic Sentiment Analysis using roBERTa and Streamlit for Sentiment Analysis")
+#Subtitle
+st.markdown("## Using a fine-tuned roBERTa model")
 
-st.markdown("Link to the app - [Basic Sentiment Analyzer on 🤗 Spaces](https://huggingface.co/spaces/rbbotadra/basic-sentiment-analysis-app)")
-    
-task='sentiment'
-MODEL = f"cardiffnlp/twitter-roberta-base-{task}"
+st.markdown("Link to the app - [Basic Sentiment Analyzer on 🤗 Spaces](https://huggingface.co/spaces/rbbotadra/toxicity-analyzer-app)")
+
+#Dropdown menu for model options
+model_opt = st.selectbox(
+    'Select a finetuned model:',
+    ('roBERTa tuned on Tweets [6-class toxicity analysis]',''))
+st.write('Model selected:', model_opt)
+
+#Tuned Model Path
+MODEL = f"./cardiffnlp/twitter-roberta-base-sentiment"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL)
+model = AutoModelForSequenceClassification.from_pretrained(MODEL)
 
-# download label mapping
-labels=[]
-mapping_link = f"https://raw.githubusercontent.com/cardiffnlp/tweeteval/main/datasets/{task}/mapping.txt"
-with urllib.request.urlopen(mapping_link) as f:
-    html = f.read().decode('utf-8').split("\n")
-    csvreader = csv.reader(html, delimiter='\t')
-labels = [row[1] for row in csvreader if len(row) > 1]
-
-# PT
-model = AutoModelForSequenceClassification.from_pretrained(MODEL, force_download=True)
-model.save_pretrained(MODEL)
-tokenizer.save_pretrained(MODEL)
+#Label mapping
+labels = ["toxic","severe_toxic","obscene","threat","insult","identity_hate"]
 
 # Preprocess text (username and link placeholders)
 def preprocess(text):
@@ -45,15 +42,11 @@ def preprocess(text):
         new_text.append(t)
     return " ".join(new_text)
 
-# Tasks:
-# emoji, emotion, hate, irony, offensive, sentiment
-# stance/abortion, stance/atheism, stance/climate, stance/feminist, stance/hillary
-
 text = st.text_input("Text Input", "War is cruelty. There is no use trying to reform it. The crueler it is, the sooner it will be over.")
-st.write("Current Sample Text:", text)
+st.write("Current Text:", text)
 
 if st.button('Run Model'):
-    MODEL = f"./cardiffnlp/twitter-roberta-base-{task}/config.json"
+    MODEL = f"./cardiffnlp/twitter-roberta-base-sentiment/config.json"
     text = preprocess(text)
     encoded_input = tokenizer(text, return_tensors='pt')
     output = model(**encoded_input)
@@ -65,7 +58,7 @@ if st.button('Run Model'):
     for i in range(scores.shape[0]):
         l = labels[ranking[i]]
         s = scores[ranking[i]]
-        st.write(f"{i+1}) {l} {np.round(float(s), 4)}")
+        st.write(f"{i+1}) {l}: {np.round(float(s), 4)}")
 else:
     st.write("Press button to run Senitment Analysis.")
 
