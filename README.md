@@ -8,6 +8,7 @@ app_file: app.py
 pinned: false
 ---
 
+## Milestone 1 Update:
 Installation instructions (Windows 10 Machine):
 
 1) Install Docker Desktop for Windows from this link: https://docs.docker.com/desktop/install/windows-install/
