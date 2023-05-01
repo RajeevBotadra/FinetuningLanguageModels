@@ -30,4 +30,6 @@ Note that the space is synced with the milestone-3 branch of this repository.
 ## Milestone 4 Update:
 See Landing Page: https://sites.google.com/njit.edu/toxicity-analyzer-app/home 
 
+See video demo of app: https://youtu.be/Mpfrlbr0-LU
+
 See Documentation.md for project documentation.
