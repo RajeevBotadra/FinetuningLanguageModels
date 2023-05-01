@@ -1,5 +1,5 @@
 ---
-title: Basic Sentiment Analyzer
+title: Toxicity Analyzer of Tweets
 emoji: 📹
 colorFrom: blue
 colorTo: red
@@ -18,3 +18,7 @@ Installation instructions (Windows 10 Machine):
 ## Milestone 2 Update:
 See Streamlit Space for App: https://huggingface.co/spaces/rbbotadra/basic-sentiment-analysis-app
 Note that the space is synced with the main branch of this repository.
+
+## Milestone 3 Update:
+See Streamlit Space for App: https://huggingface.co/spaces/rbbotadra/toxicity-analyzer-app
+Note that the space is synced with the milestone-3 branch of this repository.
