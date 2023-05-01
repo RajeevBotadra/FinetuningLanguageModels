@@ -24,5 +24,5 @@ See Streamlit Space for App: https://huggingface.co/spaces/rbbotadra/toxicity-an
 Note that the space is synced with the milestone-3 branch of this repository.
 
 ## Milestone 4 Update:
-See Landing Page: https://sites.google.com/d/1NI7xQ5RXzuN_91Yzvgd7UDFX2N7bKRKc/p/1rzCnQ3jWXqTUZF_tFXXxeixNn_nxyknk/edit
+See Landing Page: https://sites.google.com/njit.edu/toxicity-analyzer-app/home 
 See Documentation.md for project documentation.
